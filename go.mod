@@ -1,4 +1,4 @@
-module github.com/gin-gonic/autotls
+module github.com/keeliu07/autotls
 
 go 1.15
 
