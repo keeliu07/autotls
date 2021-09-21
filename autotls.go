@@ -14,14 +14,14 @@ func Run(r http.Handler, domain ...string) error {
 // RunWithManager support custom autocert manager
 func RunWithManager(r http.Handler, m *autocert.Manager, port string) error {
 	s := &http.Server{
-		Addr:      ":https",
+		Addr:      port,
 		TLSConfig: m.TLSConfig(),
 		Handler:   r,
 	}
 
 	go http.ListenAndServe(":http", m.HTTPHandler(http.HandlerFunc(redirect)))
 
-	return s.ListenAndServeTLS(port, "")
+	return s.ListenAndServeTLS("", "")
 }
 
 func redirect(w http.ResponseWriter, req *http.Request) {
